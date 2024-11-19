@@ -47,5 +47,13 @@ class Base():
         """Прокручивает страницу вниз на заданное количество пикселей."""
         self.driver.execute_script(f"window.scrollBy(0, {pixels});")
 
+    """Method clear input field"""
+
+    def clear_input_field(self, xpath):
+        """Очищает поле ввода по заданному XPATH."""
+        element = self.driver.find_element(By.XPATH, xpath)
+        self.driver.element.clear()  # Очищает поле ввода с помощью метода clear()
+        print("Поле ввода очищено.")
+
 
     

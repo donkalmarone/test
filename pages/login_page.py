@@ -59,6 +59,7 @@ class LoginPage(Base):
         self.driver.maximize_window()
         self.get_current_url()
         self.click_button_login()
+        time.sleep(2)
         self.input_user_name("9999999999")
         self.click_button_sms()
         time.sleep(2)
