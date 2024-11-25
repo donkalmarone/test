@@ -10,12 +10,6 @@ class CartPage(Base):
     global_order_title_1 = ""
     global_order_title_2 = ""
 
-    def __init__(self, driver):  # добавляем driver для того чтобы содержать шаги по авторизации
-        super().__init__(driver)
-        self.driver = driver
-        self.final_price: float | None = None  # Инициализация атрибута экземпляра
-
-
     # Locators
 
     cart_word = "/html/body/div[3]/section[1]/div/ul/li[2]/span"
@@ -102,16 +96,16 @@ class CartPage(Base):
 
     # Methods
     def select_product(self):
-        self.get_current_url()  # Переход на текущий URL
-        self.assert_word(self.get_cart_word(), "Корзина")
-        self.global_order_title_1 = self.get_order_title_1()
-        self.order_price_1 = self.get_order_price_1()
-        print(f"Название товара 1: {self.global_order_title_1}")
-        print(f"Цена товара 1: {self.order_price_1}")  # Отладочное сообщение
+        self.get_current_url()  #отображать текущий url
+        self.assert_word(self.get_cart_word(), "Корзина") #сравнение заголовков
+        self.global_order_title_1 = self.get_order_title_1() #название товара 1 и сохранение в глобальную переменную
+        self.order_price_1 = self.get_order_price_1()  #цена товара 1
+        print(f"Название товара 1: {self.global_order_title_1}") #Отладочное сообщение
+        print(f"Цена товара 1: {self.order_price_1}")  #Отладочное сообщение
 
-        self.global_order_title_2 = self.get_order_title_2()
-        self.order_price_2 = self.get_order_price_2()
-        print(f"Название товара 2: {self.global_order_title_2}")
+        self.global_order_title_2 = self.get_order_title_2() #название товара 2 и сохранение в глобальную переменную
+        self.order_price_2 = self.get_order_price_2() #цена товара 2
+        print(f"Название товара 2: {self.global_order_title_2}") #Отладочное сообщение
         print(f"Цена товара 2: {self.order_price_2}")  # Отладочное сообщение
 
         if self.order_price_1 is None or self.order_price_2 is None:

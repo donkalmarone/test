@@ -9,9 +9,6 @@ class CatalogPage(Base):
     product_price_2 = None  # Атрибут для хранения цены второго товара
     global_product_title_1 = ""
     global_product_title_2 = ""
-    def __init__(self,driver): #добавляем driver для того чтобы содержать шаги по авторизации
-        super().__init__(driver)
-        self.driver = driver
 
     # Locators
 
@@ -151,29 +148,26 @@ class CatalogPage(Base):
     def buy_product(self): #self.driver указывает системе откуда брать драйвер
         self.get_current_url()
         time.sleep(14)
-        self.click_location_menu()
-        self.input_select_search("пер. Хользунова, д. 6")
-        self.click_search_location()
-        self.click_select_location()
-        self.click_button_location()
-        self.click_button_burger()
-        self.click_button_catalog_1()
-        self.assert_word(self.get_catalog_word(), "Лекарственные препараты")
-        self.input_catalog_filter(500)
-        self.click_select_filter()
-        self.get_current_url()
-        self.click_select_product_1()
-
+        self.click_location_menu() #клик геолокации
+        self.input_select_search("пер. Хользунова, д. 6") #ввод адреса
+        self.click_search_location() #клик кнопки поиска
+        self.click_select_location() #клик на введенный адрес
+        self.click_button_location() #клик на подтвержение адреса
+        self.click_button_burger() #открытие бургера
+        self.click_button_catalog_1() #выбор категории
+        self.assert_word(self.get_catalog_word(), "Лекарственные препараты") #сравнение заголовков
+        self.input_catalog_filter(500) #ввод данных в фильтр
+        self.click_select_filter() #подтверждение фильтра
+        self.get_current_url() #отображать текущий url
+        self.click_select_product_1() #выбор продукта 1
         self.global_product_title_1 = self.get_product_title_1()  # Сохраняем название первого товара в глобальную переменную
         self.product_price_1 = self.get_product_price_1()  # Сохраняем цену первого товара
         print(f"Название товара 1: {self.global_product_title_1}")
         print(f"Цена товара 1: {self.product_price_1}")
-
-        self.click_select_product_2()
+        self.click_select_product_2() #выбор продукта 2
         self.global_product_title_2 = self.get_product_title_2()  # Сохраняем название второго товара в глобальную переменную
         self.product_price_2 = self.get_product_price_2()  # Сохраняем цену второго товара
         print(f"Название товара 2: {self.global_product_title_2}")
         print(f"Цена товара 2: {self.product_price_2}")
-
-        self.click_button_cart()
+        self.click_button_cart() #клик кнопки корзина
         time.sleep(3)

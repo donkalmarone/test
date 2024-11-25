@@ -12,10 +12,10 @@ class Main_page():
 
 def test_buy_product_1():
     """Тест по покупке товара включает:
-             в себя авторизацию, выбор товара, заполнение данных получателя, подтверждение покупки."""
+             в себя авторизацию, выбор аптеки, выбор товара, подтверждение покупки."""
     driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
 
-    print("Start Test 1")
+    print("Начало теста")
 
     login = LoginPage(driver)
     login.authorization()

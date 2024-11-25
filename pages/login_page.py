@@ -8,10 +8,6 @@ class LoginPage(Base):
 
     url = 'https://vn1.ru/'
 
-    def __init__(self,driver): #добавляем driver для того чтобы содержать шаги по авторизации
-        super().__init__(driver)
-        self.driver = driver
-
     # Locators
 
     button_login = "//p[@class='navbar__item-link-desc']"
@@ -57,11 +53,11 @@ class LoginPage(Base):
     def authorization(self):  # self.driver указывает системе откуда брать драйвер
         self.driver.get(self.url)
         self.driver.maximize_window()
-        self.get_current_url()
-        self.click_button_login()
+        self.get_current_url() #отображает текущий url
+        self.click_button_login() #клик кнопки авторизации
         time.sleep(2)
-        self.input_user_name("9999999999")
-        self.click_button_sms()
+        self.input_user_name("9999999999") #ввод номера телефона
+        self.click_button_sms() #клик на поле смс
         time.sleep(2)
-        self.input_password("1379")
+        self.input_password("1379") #ввод кода
 
